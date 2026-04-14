@@ -1,3 +1,4 @@
+using AutoMapper;
 using QAStudio.Application.Auth.DTOs;
 using QAStudio.Application.Auth.Interfaces;
 using QAStudio.Application.Common.Exceptions;
@@ -13,17 +14,20 @@ public class AuthService : IAuthService
     private readonly IRefreshTokenRepository _refreshTokenRepository;
     private readonly JwtService _jwtService;
     private readonly JwtConfig _jwtConfig;
+    private readonly IMapper _mapper;
 
     public AuthService(
         IUserRepository userRepository,
         IRefreshTokenRepository refreshTokenRepository,
         JwtService jwtService,
-        JwtConfig jwtConfig)
+        JwtConfig jwtConfig,
+        IMapper mapper)
     {
         _userRepository = userRepository;
         _refreshTokenRepository = refreshTokenRepository;
         _jwtService = jwtService;
         _jwtConfig = jwtConfig;
+        _mapper = mapper;
     }
 
     public async Task<User> RegisterAsync(RegisterDto dto, CancellationToken ct = default)
@@ -63,13 +67,11 @@ public class AuthService : IAuthService
             throw new UnauthorizedException("Invalid or expired refresh token.");
         }
 
-        // Revoke the old token (rotation)
         var user = await _userRepository.GetByIdAsync(storedToken.UserId, ct)
             ?? throw new NotFoundException("User", storedToken.UserId);
 
         await _refreshTokenRepository.RevokeAllUserTokensAsync(storedToken.UserId, refreshToken, ct);
 
-        // Generate new tokens
         var newAccessToken = _jwtService.GenerateAccessToken(user);
         var newRefreshToken = _jwtService.GenerateRefreshToken();
 
@@ -94,14 +96,7 @@ public class AuthService : IAuthService
         var user = await _userRepository.GetByIdAsync(userId, ct)
             ?? throw new NotFoundException("User", userId);
 
-        return new UserProfileDto
-        {
-            Id = user.Id,
-            Email = user.Email,
-            Name = user.Name,
-            Role = user.Role,
-            CreatedAt = user.CreatedAt
-        };
+        return _mapper.Map<UserProfileDto>(user);
     }
 
     private async Task<AuthResponseDto> CreateAuthResponseAsync(User user, CancellationToken ct)
@@ -122,14 +117,7 @@ public class AuthService : IAuthService
             AccessToken = accessToken,
             RefreshToken = refreshToken,
             ExpiresAt = DateTime.UtcNow.AddMinutes(_jwtConfig.AccessTokenExpirationMinutes),
-            User = new UserProfileDto
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Name = user.Name,
-                Role = user.Role,
-                CreatedAt = user.CreatedAt
-            }
+            User = _mapper.Map<UserProfileDto>(user)
         };
     }
 }
