@@ -13,4 +13,5 @@ public class TargetEnvironment : BaseEntity
     public ICollection<TestCase> TestCases { get; set; } = new List<TestCase>();
     public ICollection<TestRun> TestRuns { get; set; } = new List<TestRun>();
     public ICollection<TestSchedule> TestSchedules { get; set; } = new List<TestSchedule>();
+    public ICollection<RecordingSession> RecordingSessions { get; set; } = new List<RecordingSession>();
 }

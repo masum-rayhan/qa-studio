@@ -15,4 +15,5 @@ public class User : BaseEntity
     public ICollection<TestSchedule> Schedules { get; set; } = new List<TestSchedule>();
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     public ICollection<TargetEnvironment> CreatedEnvironments { get; set; } = new List<TargetEnvironment>();
+    public ICollection<RecordingSession> RecordingSessions { get; set; } = new List<RecordingSession>();
 }

@@ -55,6 +55,17 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
+// Allow browser extension to call the API
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ExtensionPolicy", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Auto-migrate database on startup
@@ -75,6 +86,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("ExtensionPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
