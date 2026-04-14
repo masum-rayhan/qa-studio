@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using QAStudio.Api.Middleware;
 using QAStudio.Application;
@@ -5,6 +6,12 @@ using QAStudio.Infrastructure.Data;
 using QAStudio.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load environment-specific local settings (local overrides — NOT committed to git)
+builder.Configuration.AddJsonFile(
+    $"appsettings.{builder.Environment.EnvironmentName}.local.json",
+    optional: true,
+    reloadOnChange: true);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -50,6 +57,13 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Auto-migrate database on startup
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+}
+
 // Global exception handler — must be first in pipeline
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
@@ -58,11 +72,6 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "QA Studio API v1"));
-
-    // Ensure database is created
-    using var scope = app.Services.CreateScope();
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
