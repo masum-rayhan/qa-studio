@@ -22,6 +22,50 @@ namespace QAStudio.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("QAStudio.Domain.Entities.RecordingSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StepsJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("TargetEnvironmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("TargetUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("TargetEnvironmentId");
+
+                    b.ToTable("RecordingSessions");
+                });
+
             modelBuilder.Entity("QAStudio.Domain.Entities.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
@@ -331,6 +375,24 @@ namespace QAStudio.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("QAStudio.Domain.Entities.RecordingSession", b =>
+                {
+                    b.HasOne("QAStudio.Domain.Entities.User", "Creator")
+                        .WithMany("RecordingSessions")
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("QAStudio.Domain.Entities.TargetEnvironment", "TargetEnvironment")
+                        .WithMany("RecordingSessions")
+                        .HasForeignKey("TargetEnvironmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("TargetEnvironment");
+                });
+
             modelBuilder.Entity("QAStudio.Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("QAStudio.Domain.Entities.User", "User")
@@ -439,6 +501,8 @@ namespace QAStudio.Infrastructure.Migrations
 
             modelBuilder.Entity("QAStudio.Domain.Entities.TargetEnvironment", b =>
                 {
+                    b.Navigation("RecordingSessions");
+
                     b.Navigation("TestCases");
 
                     b.Navigation("TestRuns");
@@ -461,6 +525,8 @@ namespace QAStudio.Infrastructure.Migrations
             modelBuilder.Entity("QAStudio.Domain.Entities.User", b =>
                 {
                     b.Navigation("CreatedEnvironments");
+
+                    b.Navigation("RecordingSessions");
 
                     b.Navigation("RefreshTokens");
 

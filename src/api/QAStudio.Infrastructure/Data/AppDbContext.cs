@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<TestRun> TestRuns => Set<TestRun>();
     public DbSet<TestResult> TestResults => Set<TestResult>();
     public DbSet<TestSchedule> TestSchedules => Set<TestSchedule>();
+    public DbSet<RecordingSession> RecordingSessions => Set<RecordingSession>();
 
     public AppDbContext(DbContextOptions options) : base(options)
     {
@@ -107,6 +108,21 @@ public class AppDbContext : DbContext
             entity.HasOne(s => s.Creator)
                   .WithMany(u => u.Schedules)
                   .HasForeignKey(s => s.CreatedBy)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // RecordingSession
+        modelBuilder.Entity<RecordingSession>(entity =>
+        {
+            entity.HasIndex(rs => rs.Status);
+            entity.Property(rs => rs.Status).HasConversion<string>();
+            entity.HasOne(rs => rs.Creator)
+                  .WithMany(u => u.RecordingSessions)
+                  .HasForeignKey(rs => rs.CreatedBy)
+                  .OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(rs => rs.TargetEnvironment)
+                  .WithMany(e => e.RecordingSessions)
+                  .HasForeignKey(rs => rs.TargetEnvironmentId)
                   .OnDelete(DeleteBehavior.Restrict);
         });
     }

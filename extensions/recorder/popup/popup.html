@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QA Studio Recorder</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; width: 280px; padding: 16px; background: #0a0a0a; color: #ededed; }
+    .header { font-weight: 600; font-size: 14px; margin-bottom: 12px; color: #3b82f6; }
+    .field { margin-bottom: 10px; }
+    label { display: block; font-size: 11px; color: #a3a3a3; margin-bottom: 4px; }
+    input { width: 100%; padding: 6px 8px; border: 1px solid #262626; border-radius: 4px; background: #111; color: #ededed; font-size: 12px; }
+    input:focus { outline: none; border-color: #3b82f6; }
+    .status { display: flex; align-items: center; gap: 6px; font-size: 12px; margin-bottom: 10px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #525252; }
+    .dot.recording { background: #ef4444; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    button { width: 100%; padding: 7px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: 500; }
+    .btn-record { background: #3b82f6; color: #fff; margin-bottom: 6px; }
+    .btn-record:hover { background: #2563eb; }
+    .btn-record:disabled { background: #262626; color: #525252; cursor: not-allowed; }
+    .btn-stop { background: #ef4444; color: #fff; margin-bottom: 6px; display: none; }
+    .btn-stop:hover { background: #dc2626; }
+    .btn-clear { background: #1a1a1a; color: #a3a3a3; border: 1px solid #262626; }
+    .btn-clear:hover { color: #ededed; }
+    .error { color: #ef4444; font-size: 11px; margin-top: 6px; display: none; }
+    .info { background: #111; border: 1px solid #262626; border-radius: 4px; padding: 8px; font-size: 11px; color: #a3a3a3; margin-bottom: 10px; }
+    .info strong { color: #ededed; }
+    .divider { border-top: 1px solid #262626; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <div class="header">QA Studio Recorder</div>
+
+  <div class="field">
+    <label for="apiUrl">API Base URL</label>
+    <input id="apiUrl" type="url" placeholder="http://localhost:5000/api" />
+  </div>
+
+  <div class="field">
+    <label for="sessionId">Session ID</label>
+    <input id="sessionId" type="text" placeholder="Paste session ID from QA Studio" />
+  </div>
+
+  <div class="field">
+    <label for="accessToken">Access Token (JWT)</label>
+    <input id="accessToken" type="password" placeholder="Paste your access token" />
+  </div>
+
+  <div class="status">
+    <div class="dot" id="statusDot"></div>
+    <span id="statusText">Idle</span>
+  </div>
+
+  <div class="error" id="errorMsg"></div>
+
+  <button class="btn-record" id="startBtn">Start Recording</button>
+  <button class="btn-stop" id="stopBtn">Stop Recording</button>
+  <button class="btn-clear" id="clearBtn">Clear Session</button>
+
+  <div class="divider"></div>
+
+  <div class="info">
+    <strong>How to use:</strong><br/>
+    1. Start a session in QA Studio<br/>
+    2. Copy the Session ID<br/>
+    3. Paste it above and click Start<br/>
+    4. Interact with the page
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

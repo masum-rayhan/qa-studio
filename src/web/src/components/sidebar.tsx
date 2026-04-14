@@ -7,6 +7,7 @@ import {
   Globe,
   FileText,
   PlayCircle,
+  Radio,
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,7 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/record", label: "Record", icon: Radio },
   { href: "/environments", label: "Environments", icon: Globe },
   { href: "/test-cases", label: "Test Cases", icon: FileText },
   { href: "/test-runs", label: "Test Runs", icon: PlayCircle },
