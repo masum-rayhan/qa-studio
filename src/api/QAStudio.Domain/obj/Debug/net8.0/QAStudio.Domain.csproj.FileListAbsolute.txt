@@ -9,3 +9,4 @@ E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\refint\QAStudio.Domain.dll
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.pdb
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\ref\QAStudio.Domain.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.sourcelink.json

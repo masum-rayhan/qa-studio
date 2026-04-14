@@ -17,3 +17,4 @@ E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Infrastructure\obj\Debug\net8.0\r
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Infrastructure\obj\Debug\net8.0\QAStudio.Infrastructure.pdb
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Infrastructure\obj\Debug\net8.0\QAStudio.Infrastructure.genruntimeconfig.cache
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Infrastructure\obj\Debug\net8.0\ref\QAStudio.Infrastructure.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Infrastructure\obj\Debug\net8.0\QAStudio.Infrastructure.sourcelink.json

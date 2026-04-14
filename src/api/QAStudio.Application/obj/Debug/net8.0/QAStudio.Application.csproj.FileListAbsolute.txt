@@ -13,3 +13,4 @@ E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QASt
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\refint\QAStudio.Application.dll
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.pdb
 E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\ref\QAStudio.Application.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.sourcelink.json
