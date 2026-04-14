@@ -1,0 +1,15 @@
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\bin\Debug\net8.0\QAStudio.Application.deps.json
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\bin\Debug\net8.0\QAStudio.Application.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\bin\Debug\net8.0\QAStudio.Application.pdb
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\bin\Debug\net8.0\QAStudio.Domain.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\bin\Debug\net8.0\QAStudio.Domain.pdb
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.csproj.AssemblyReference.cache
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.AssemblyInfoInputs.cache
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.AssemblyInfo.cs
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.csproj.CoreCompileInputs.cache
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.84D8648F.Up2Date
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\refint\QAStudio.Application.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\QAStudio.Application.pdb
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Application\obj\Debug\net8.0\ref\QAStudio.Application.dll

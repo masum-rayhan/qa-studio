@@ -1,0 +1,11 @@
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\bin\Debug\net8.0\QAStudio.Domain.deps.json
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\bin\Debug\net8.0\QAStudio.Domain.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\bin\Debug\net8.0\QAStudio.Domain.pdb
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.AssemblyInfoInputs.cache
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.AssemblyInfo.cs
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.csproj.CoreCompileInputs.cache
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\refint\QAStudio.Domain.dll
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\QAStudio.Domain.pdb
+E:\Projects\Ongoing\qa-studio\src\api\QAStudio.Domain\obj\Debug\net8.0\ref\QAStudio.Domain.dll
