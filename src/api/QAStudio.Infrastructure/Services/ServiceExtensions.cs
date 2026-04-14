@@ -5,9 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using QAStudio.Application.Auth.Interfaces;
+using QAStudio.Application.Environments.Interfaces;
 using QAStudio.Domain.Interfaces;
 using QAStudio.Infrastructure.Configuration;
 using QAStudio.Infrastructure.Data;
+using QAStudio.Infrastructure.Mappings;
 using QAStudio.Infrastructure.Repositories;
 
 namespace QAStudio.Infrastructure.Services;
@@ -52,6 +54,7 @@ public static class ServiceExtensions
         // Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+        services.AddScoped<IEnvironmentRepository, EnvironmentRepository>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         // Configuration binding
@@ -78,6 +81,10 @@ public static class ServiceExtensions
         // Services
         services.AddScoped<JwtService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IEnvironmentService, EnvironmentService>();
+
+        // AutoMapper
+        services.AddAutoMapper(typeof(EnvironmentMappingProfile).Assembly);
 
         // JWT Authentication
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
