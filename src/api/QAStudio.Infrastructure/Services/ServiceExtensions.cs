@@ -27,11 +27,14 @@ public static class ServiceExtensions
                 ?? throw new InvalidOperationException(
                     "Database:Provider is set to 'Postgres' but ConnectionStrings:Postgres is missing.");
 
-            services.AddDbContext<AppDbContext>(options =>
+            services.AddDbContext<AppDbContextPostgres>(options =>
                 options.UseNpgsql(postgresConn, npgsql =>
-                    npgsql.MigrationsAssembly(typeof(AppDbContext).Assembly.GetName().Name)));
+                    npgsql.MigrationsAssembly(typeof(AppDbContextPostgres).Assembly.GetName().Name)));
+
+            // Alias AppDbContext to the Postgres context so repositories still use AppDbContext
+            services.AddScoped<AppDbContext>(sp => sp.GetRequiredService<AppDbContextPostgres>());
         }
-        else
+        else if (string.Equals(provider, "SqlServer", StringComparison.OrdinalIgnoreCase))
         {
             var sqlServerConn = configuration.GetConnectionString("SqlServer")
                 ?? throw new InvalidOperationException(
@@ -39,6 +42,11 @@ public static class ServiceExtensions
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(sqlServerConn));
+        }
+        else
+        {
+            throw new InvalidOperationException(
+                $"Unknown Database:Provider '{provider}'. Supported: SqlServer, Postgres.");
         }
 
         // Repositories

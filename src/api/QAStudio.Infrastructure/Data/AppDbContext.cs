@@ -13,7 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<TestResult> TestResults => Set<TestResult>();
     public DbSet<TestSchedule> TestSchedules => Set<TestSchedule>();
 
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    public AppDbContext(DbContextOptions options) : base(options)
     {
     }
 
