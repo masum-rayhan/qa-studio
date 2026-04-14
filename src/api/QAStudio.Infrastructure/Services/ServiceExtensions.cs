@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using QAStudio.Application.Auth.Interfaces;
 using QAStudio.Application.Environments.Interfaces;
+using QAStudio.Application.TestCases.Interfaces;
+using QAStudio.Application.TestRuns.Interfaces;
 using QAStudio.Domain.Interfaces;
 using QAStudio.Infrastructure.Configuration;
 using QAStudio.Infrastructure.Data;
@@ -55,6 +57,8 @@ public static class ServiceExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<IEnvironmentRepository, EnvironmentRepository>();
+        services.AddScoped<ITestCaseRepository, TestCaseRepository>();
+        services.AddScoped<ITestRunRepository, TestRunRepository>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         // Configuration binding
@@ -82,9 +86,11 @@ public static class ServiceExtensions
         services.AddScoped<JwtService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IEnvironmentService, EnvironmentService>();
+        services.AddScoped<ITestCaseService, TestCaseService>();
+        services.AddScoped<ITestRunService, TestRunService>();
 
         // AutoMapper
-        services.AddAutoMapper(typeof(EnvironmentMappingProfile).Assembly);
+        services.AddAutoMapper(typeof(TestCaseMappingProfile).Assembly);
 
         // JWT Authentication
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
